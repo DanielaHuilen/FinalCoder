@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'AppFinal'
+    'AppFinal',
 ]
 
 MIDDLEWARE = [
@@ -50,12 +50,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Final.urls'
+ROOT_URLCONF = 'Final.urls' #FINAL_CODER
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["/AppFinal/templates"],
+        'DIRS': ["/AppFinal/templates"], #revisar cualquier cosa
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,3 +122,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#Agregado con el de clase:
+
+#LOGIN_URL='/AppFinal/login/'
+
+#LOGOUT_REDIRECT_URL='/AppFinal/login/'
+
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = BASE_DIR / 'media'
