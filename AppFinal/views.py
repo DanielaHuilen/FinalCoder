@@ -23,14 +23,11 @@ from .models import *
 def inicio (request):
     return render (request,"inicio.html")
 
-def Profesores_index(request:HttpRequest) -> HttpResponse:
-    Profesores_index.save()
-    return HttpResponse ("Pagina de Profesores")
+def Profesores_index(request):
+    return render (request, "Profesores_index.html")
 
-def Materia_index(request:HttpRequest) -> HttpResponse:
-    Materia_index.save()
-    return HttpResponse ("Materias")
+def Materia_index(request):
+    return render (request, "Materias_index.html")
 
-def TrabajoPractico_index(request:HttpRequest) -> HttpResponse:
-    TrabajoPractico_index.save()
-    return HttpResponse ("Trabajos Prácticos")
+def TrabajoPractico_index(request):
+    return render (request, "TrabajoPractico_index.html")
