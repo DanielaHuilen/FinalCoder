@@ -17,7 +17,7 @@ class Profesores (models.Model):
     materia = models.ManyToManyField(Materia)
     
     def __str__ (self):
-        return f"Docente: {self.apellido} {self.nombre}, docente de {self.asignatura} "
+        return f"Docente: {self.apellido} {self.nombre}, docente de {self.materia} "
     
     
 class TrabajoPractico(models.Model):
@@ -26,7 +26,7 @@ class TrabajoPractico(models.Model):
     archivo = models.FileField()
     datos = models.DateTimeField(auto_now_add=True)
     profesor = models.ForeignKey(Profesores, on_delete=models.CASCADE)
-    materia = models.ManyToManyField(Materia)
+    materia = models.CharField(max_length=100)
 
     def __str__(self):
         return self.titulo + " " + self.descripcion

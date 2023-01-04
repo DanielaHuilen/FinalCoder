@@ -1,0 +1,26 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">MATERIA FORMULARIO</h1>
+{% endblock %}
+
+{% block contenido1 %}
+<h1>FORMULARIO</h1>
+
+<form action="{% url 'Materias_formulario' %}" method="POST"> {% csrf_token %}
+
+    
+<table>
+
+    {{ form.as_table }}
+
+</table>
+
+<input type="submit" value="ENVIAR MATERIA">
+
+
+</form>
+
+{% endblock %}

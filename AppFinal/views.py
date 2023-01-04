@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from .models import *
+from .forms import *
+from django.urls import reverse_lazy
 
-#from django.urls import reverse_lazy
 
-#from AppCoder.forms import CursoForm, ProfeForm, RegistroUsuarioForm, UserEditForm, AvatarForm
 
 #from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -15,7 +15,6 @@ from .models import *
 #from django.contrib.auth.mixins import LoginRequiredMixin #para vistas basadas en clases CLASS
 #from django.contrib.auth.decorators import login_required #para vistas basadas en funciones DEF 
 
-#from django.shortcuts import render
 
 
 # Create your views here.
@@ -31,3 +30,79 @@ def Materia_index(request):
 
 def TrabajoPractico_index(request):
     return render (request, "TrabajoPractico_index.html")
+
+def Materias_formulario(request):
+    if request.method == "POST":
+        form=MateriaForm(request.POST)
+        
+        if form.is_valid():
+            informacion=form.cleaned_data
+            print(informacion)
+            nombre=informacion["nombre"]
+            
+            materia1=Materia(nombre=nombre)
+            materia1.save()
+            return render (request, "inicio.html")
+        else:
+            return render (request, "Materias_formulario.html",{"form":formulario})
+    else:
+        formulario=MateriaForm()
+    
+    
+    return render (request, "Materias_formulario.html",{"form":formulario})
+
+
+def TrabajoPractico_formulario(request):
+    formulario = TrabajoForm()
+    
+    if request.method == "POST":
+        form= TrabajoForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            informacion=form.cleaned_data
+            
+            print(form)
+            
+            titulo1= informacion ["titulo"]
+            descripcion1= informacion ["descripcion"]
+            archivo1= informacion ["archivo"]
+            profesor1= informacion ["profesor"]
+            materia1= informacion ["materia"]
+        
+            trabajo1= TrabajoPractico(titulo=titulo1, descripcion=descripcion1, archivo=archivo1, profesor=profesor1, materia=materia1)
+            trabajo1.save()
+            return render (request, "inicio.html")
+        
+    else:
+        formulario=TrabajoForm()
+
+    return render (request, "TrabajoPractico_formulario.html",{"form":formulario})
+
+
+def Profesores_formulario(request):
+    
+    
+    if request.method == "POST":
+        form=ProfesorForm(request.POST)
+        
+        if form.is_valid():
+            informacion=form.cleaned_data
+            
+            print(informacion)
+            
+            nombre1=informacion["nombre"]
+            apellido1=informacion["apellido"]
+            antiguedad1=informacion["antiguedad"]
+            email1 = informacion["email"]
+            materia1 =informacion["materia"]
+            
+            profesor1=Profesores(nombre=nombre1, apellido=apellido1, antiguedad=antiguedad1, email=email1, materia=materia1)
+            profesor1.save()
+            return render (request, "inicio.html")
+        else:
+            return render (request, "Profesores_formulario.html",{"form":formulario})
+    else:
+        formulario=ProfesorForm()
+    
+    
+    return render (request, "Profesores_formulario.html",{"form":formulario})
