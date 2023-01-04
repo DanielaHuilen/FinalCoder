@@ -24,9 +24,11 @@ class TrabajoPractico(models.Model):
     titulo = models.CharField(max_length=100)
     descripcion = models.TextField()
     archivo = models.FileField()
-    datos = models.DateTimeField(auto_now_add=True)
-    profesor = models.ForeignKey(Profesores, on_delete=models.CASCADE)
-    materia = models.CharField(max_length=100)
+    #datos = models.DateTimeField(auto_now_add=True)
+    #profesor = models.ForeignKey(Profesores, on_delete=models.CASCADE)
+    profesor=models.CharField(max_length=70)
+    materia = models.CharField(max_length=50, default="Desconocido")
 
     def __str__(self):
-        return self.titulo + " " + self.descripcion
+        return self.titulo + " " + self.descripcion 
+        

@@ -1,0 +1,27 @@
+{% extends "padre.html" %} <!--cambiar inicio por padre-->
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">Resultados de la busqueda</h1>
+{% endblock %}
+
+{% block contenido1 %}
+
+{% if profesor %}
+{% for profesor in profesor %}
+<p> {{ profesor }} </p>
+{% endfor %}
+
+{% else %}
+
+<p> No hay profesores con ese nombre</p>
+
+{% endif %}
+
+{% endblock %}
+
+{% block contenido2 %}
+<h1>Cooperando</h1>
+<h2>Compartí tus trabajos prácticos y crece junto a nosotro </h2>
+{% endblock %}

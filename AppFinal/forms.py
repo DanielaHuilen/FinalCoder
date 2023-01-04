@@ -28,6 +28,13 @@ class TrabajoForm (forms.Form):
     titulo = forms.CharField(max_length=100)
     descripcion = forms.CharField()
     archivo = forms.FileField()
-    datos = models.DateTimeField(auto_now=True)
-    profesor = models.ForeignKey(Profesores, on_delete=models.CASCADE)
+    #datos = models.DateTimeField(auto_now=True)
+    #profesor = models.ForeignKey(Profesores, on_delete=models.CASCADE)
+    profesor = forms.CharField(max_length=200)
     materia = forms.CharField()
+
+#class TrabajoForm(forms.Form):
+#    class Meta:
+#        model = TrabajoPractico
+#        fields = ['titulo', 'descripcion', 'archivo', 'profesor', 'materia']
+        

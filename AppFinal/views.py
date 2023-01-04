@@ -5,7 +5,6 @@ from .forms import *
 from django.urls import reverse_lazy
 
 
-
 #from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
@@ -61,22 +60,24 @@ def TrabajoPractico_formulario(request):
         if form.is_valid():
             informacion=form.cleaned_data
             
-            print(form)
+            print(informacion)
             
-            titulo1= informacion ["titulo"]
-            descripcion1= informacion ["descripcion"]
-            archivo1= informacion ["archivo"]
-            profesor1= informacion ["profesor"]
-            materia1= informacion ["materia"]
+            titulo1= informacion["titulo"]
+            descripcion1= informacion["descripcion"]
+            archivo1= informacion["archivo"]
+            profesor1= informacion["profesor"]
+            materia1= informacion["materia"]
         
             trabajo1= TrabajoPractico(titulo=titulo1, descripcion=descripcion1, archivo=archivo1, profesor=profesor1, materia=materia1)
             trabajo1.save()
             return render (request, "inicio.html")
         
+        #else:
+            #return render (request, "TrabajoPractico_formulario.html",{"form":formulario})
     else:
         formulario=TrabajoForm()
 
-    return render (request, "TrabajoPractico_formulario.html",{"form":formulario})
+    return render (request, "TrabajoPractico_formulario.html", {"form":formulario})
 
 
 def Profesores_formulario(request):
@@ -106,3 +107,35 @@ def Profesores_formulario(request):
     
     
     return render (request, "Profesores_formulario.html",{"form":formulario})
+
+
+
+
+#def TrabajoPractico_formulario(request):
+#    if request.method == 'POST':
+#        form = TrabajoForm(request.POST, request.FILES)
+#        if form.is_valid():
+#            form.save()
+            #return render (request, "inicio.html")
+            
+#    else:
+ #       form = TrabajoForm()
+ #   return render(request, 'TrabajoPractico_formulario.html', {'form': form})
+
+
+# Guardar el archivo en el directorio de archivos estáticos
+
+def busquedaProfesor (request):
+    return render (request, "busquedaProfesor.html")
+
+
+def buscar(request):
+    
+    if "nombre" in request.GET:
+        
+        nombre= request.GET["nombre"]
+        profesor=Profesores.objects.filter(nombre__icontains=nombre)
+        return render(request, "resultadosbusqueda.html", {"profesor":profesor})
+    else:
+        return render (request, "busquedaProfesor.html", {"mensaje":"Ingresa el nombre de un Profesor"})
+     
