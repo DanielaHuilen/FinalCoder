@@ -1,0 +1,26 @@
+{% extends "padre.html" %} <!--cambiar inicio por padre-->
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">Formulario de Busqueda de Trabajos Prácticos</h1>
+{% endblock %}
+
+{% block contenido1 %}
+
+<form action="{% url 'buscarTrabajo' %}" method='GET'>
+
+    <input type= "text" name="titulo" id="titulo">
+    
+    <input type= "submit" value="buscar">
+
+</form>
+
+{{ mensaje }}
+
+{% endblock %}
+
+{% block contenido2 %}
+<h1>Secundaria</h1>
+<h2>De todas las modalidades </h2>
+{% endblock %}

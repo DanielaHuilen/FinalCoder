@@ -14,7 +14,8 @@ class Profesores (models.Model):
     apellido=models.CharField(max_length=20)
     antiguedad=models.IntegerField()
     email = models.EmailField(unique=True)
-    materia = models.ManyToManyField(Materia)
+    #materia = models.ManyToManyField(Materia)
+    materia=models.CharField(max_length=50, default="Desconocido")
     
     def __str__ (self):
         return f"Docente: {self.apellido} {self.nombre}, docente de {self.materia} "

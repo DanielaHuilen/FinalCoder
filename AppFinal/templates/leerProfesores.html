@@ -1,0 +1,22 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">Listado de Profesores</h1>
+{% endblock %}
+
+{% block contenido1 %}
+<h1>Profesores:</h1>
+
+<ul>
+    {% for profes in profesores%}
+
+    <li> {{profes.apellido}} {{profes.nombre}} {{profes.materia}} </li>
+
+    {% endfor %}
+
+    
+
+
+{% endblock %}

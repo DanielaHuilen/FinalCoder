@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from .models import *
 from .forms import *
 from django.urls import reverse_lazy
+from django.core.files.storage import default_storage
 
 
 #from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -70,6 +71,10 @@ def TrabajoPractico_formulario(request):
         
             trabajo1= TrabajoPractico(titulo=titulo1, descripcion=descripcion1, archivo=archivo1, profesor=profesor1, materia=materia1)
             trabajo1.save()
+            archivo = form.cleaned_data['archivo']
+            ruta= f'archivos/ {titulo1}.pdf '
+            
+            default_storage.save(ruta, archivo)
             return render (request, "inicio.html")
         
         #else:
@@ -139,3 +144,43 @@ def buscar(request):
     else:
         return render (request, "busquedaProfesor.html", {"mensaje":"Ingresa el nombre de un Profesor"})
      
+
+
+
+def busquedaTrabajo (request):
+    return render (request, "busquedaTrabajo.html")
+
+
+def buscarTrabajo(request):
+    
+    if "titulo" in request.GET:
+        
+        titulo= request.GET["titulo"]
+        trabajo=TrabajoPractico.objects.filter(titulo__icontains=titulo)
+        return render(request, "resultadosbusquedaTrabajo.html", {"trabajo":trabajo})
+    else:
+        return render (request, "busquedaTrabajo.html", {"mensaje":"Ingresa una temática que coincida"})
+     
+#Vistas
+
+def leerProfesores(request):
+    profesores=Profesores.objects.all()
+    return render (request, "leerProfesores.html", {"profesores":profesores})
+
+def leerTrabajos(request):
+    trabajos=TrabajoPractico.objects.all()
+    return render (request, "leerTrabajos.html", {"trabajos":trabajos})
+
+
+#Para ver si se puede descargar:
+
+
+def descargar_archivo(request, nombre_archivo):
+    # Abre el archivo en modo lectura binaria
+    with open(f'archivos/{nombre_archivo}', 'rb') as archivo:
+        # Crea una respuesta del servidor con el archivo
+        response = HttpResponse(archivo.read(), content_type='application/pdf')
+        # Agrega un encabezado 'Content-Disposition' para indicar que se está descargando un archivo
+        response['Content-Disposition'] = f'attachment; filename="{nombre_archivo}"'
+        return response
+

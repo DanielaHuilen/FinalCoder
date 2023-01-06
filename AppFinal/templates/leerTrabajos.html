@@ -1,0 +1,27 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">Trabajos Prácticos</h1>
+{% endblock %}
+
+{% block contenido1 %}
+<h1>Listado Completo:</h1>
+
+<ul>
+    {% for trabajo in trabajos %}
+
+    <li> 
+        {{trabajo.titulo}} {{trabajo.descripcion}} {{trabajo.archivo}} 
+    
+        <a href="{% url 'descargar_archivo' trabajo.archivo %}">Descargar archivo</a>
+
+    </li>
+
+    {% endfor %}
+
+    
+
+
+{% endblock %}

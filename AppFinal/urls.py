@@ -12,6 +12,14 @@ urlpatterns = [
     path('Profesores_formulario/' , Profesores_formulario , name="Profesores_formulario"),
     path('busquedaProfesor/', busquedaProfesor, name="busquedaPorfesor"),
     path("buscar/", buscar, name="buscar"),
+    path('busquedaTrabajo/', busquedaTrabajo, name="busquedaTrabajo"),
+    path('buscarTrabajo/', buscarTrabajo, name="buscarTrabajo"),
+    path("leerProfesores/", leerProfesores, name="leerProfesores"),
+    path("leerTrabajos/", leerTrabajos, name="leerTrabajos"),
+    path('descargar/<str:nombre_archivo>', descargar_archivo, name='descargar_archivo'),
+
+
+
     
 
     

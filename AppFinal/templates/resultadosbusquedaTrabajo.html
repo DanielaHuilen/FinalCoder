@@ -1,0 +1,25 @@
+{% extends "padre.html" %} <!--cambiar inicio por padre-->
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">Resultados Busqueda de Trabajos</h1>
+{% endblock %}
+
+{% block contenido1 %}
+
+<h2>Encontramos las siguientes coincidencias: </h2>
+
+{% if trabajo %}
+{% for trabajo in trabajo %}
+<p> {{ trabajo }} <a href="{% url 'descargar_archivo' trabajo.archivo %}">Descargar archivo</a></p>
+{% endfor %}
+
+{% else %}
+
+<p> Por ahora no hay trabajos de esa temática</p>
+
+{% endif %}
+
+{% endblock %}
+
