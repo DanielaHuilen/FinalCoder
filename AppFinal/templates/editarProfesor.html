@@ -1,0 +1,26 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">EDITAR PROFESOR {{ profesor}} </h1>
+{% endblock %}
+
+{% block contenido1 %}
+<h1>Editando: </h1>
+
+<form action="{% url 'editarProfesor' profesor.id %}" method="POST"> {% csrf_token %}
+
+    
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+
+<input type="submit" value="Editar Profesor">
+
+
+</form>
+
+{% endblock %}

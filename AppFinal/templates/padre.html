@@ -23,11 +23,16 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="#!">TAD. Tu Asistente Docente</a>
-                <a class="btn btn-primary" href="{% url 'materia' %}">Materias</a>
-                <a class="btn btn-primary" href="{% url 'profesores' %}">Profesores</a>
-                <a class="btn btn-primary" href="{% url 'trabajos' %}">Trabajos Prácticos</a>
-                <a class="btn btn-primary" href="{% url 'TrabajoPractico_formulario' %}" >Ingresar Trabajo</a>
-
+                <a class="btn btn-warning " href="{% url 'materia' %}">Materias</a>
+                <a class="btn btn-warning" href="{% url 'profesores' %}">Profesores</a>
+                <a class="btn btn-warning" href="{% url 'trabajos' %}">Trabajos Prácticos</a>
+                <a class="btn btn-warning" href="{% url 'TrabajoPractico_formulario' %}" >Ingresar Trabajo</a>
+                {% if user.is_authenticated %}
+                <p> {{ user.username}} </p>
+                <a class="btn btn-danger " style="color: white; ; font-weight: bold;" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                <a class="btn btn-warning " style="background-color: #FFA500; color: white; ; font-weight: bold;" href="{% url 'login' %}">Login</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->
@@ -93,22 +98,22 @@
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src= "{% static "AppFinal/assets/img/testimonials-1.jpg" %}" alt="..." />
-                            <h5>Fabiana</h5>
-                            <p class="font-weight-light mb-0">"Tiene una bendi hermosa"</p>
+                            <h5>Daniela</h5>
+                            <p class="font-weight-light mb-0">"Profe de matemática"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src="{% static "AppFinal/assets/img/testimonials-2.jpg" %}" alt="..." />
                             <h5>Federico</h5>
-                            <p class="font-weight-light mb-0">"Te descuidas y te apuesta el aguinaldo"</p>
+                            <p class="font-weight-light mb-0">"Radiologo"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src= "{% static "AppFinal/assets/img/testimonials-3.jpg" %}" alt="..." />
-                            <h5>Daniela</h5>
-                            <p class="font-weight-light mb-0">"Tiene más ganas de cobrar en dolares que de comer vitel toné"</p>
+                            <h5>Fabiana</h5>
+                            <p class="font-weight-light mb-0">"Profe de matemática"</p>
                         </div>
                     </div>
                 </div>
@@ -136,7 +141,7 @@
                                     <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:required">Email Address is required.</div>
                                     <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:email">Email Address Email is not valid.</div>
                                 </div>
-                                <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                                <div class="col-auto"><button class="btn btn-warning btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
                             </div>
                             <!-- Submit success message-->
                             <!---->
@@ -201,4 +206,6 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+
+    
 </html>

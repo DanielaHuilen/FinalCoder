@@ -17,6 +17,13 @@ urlpatterns = [
     path("leerProfesores/", leerProfesores, name="leerProfesores"),
     path("leerTrabajos/", leerTrabajos, name="leerTrabajos"),
     path('descargar/<str:nombre_archivo>', descargar_archivo, name='descargar_archivo'),
+    path("eliminarProfesor/<id>", eliminarProfesor, name="eliminarProfesor" ),
+    path("eliminarTrabajo/<id>", eliminarTrabajo, name="eliminarTrabajo" ),
+    path("editarProfesor/<id>", editarProfesor , name="editarProfesor"),
+    path("editarTrabajo/<id>", editarTrabajo , name="editarTrabajo"),
+    path("login/", login_request, name="login"),
+    path("register/",register, name='register'),
+    path("logout/",LogoutView.as_view(), name="logout"),
 
 
 

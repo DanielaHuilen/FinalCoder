@@ -12,11 +12,14 @@
 <ul>
     {% for profes in profesores%}
 
-    <li> {{profes.apellido}} {{profes.nombre}} {{profes.materia}} </li>
+    <li> {{profes.apellido}} - {{profes.nombre}} - {{profes.materia}} </li>
 
+        <a style="height: 30px; padding: 0 10px; font-size: 12px;" class="btn btn-danger" href = "{% url 'eliminarProfesor' profes.id %}"> Eliminar </a>
+        <a style="height: 30px; padding: 0 10px; font-size: 12px;" class="btn btn-success" href = "{% url 'editarProfesor' profes.id %}"> Editar </a>  
     {% endfor %}
 
-    
+</ul>    
 
+<h3> {{ mensaje }} </h3>
 
 {% endblock %}

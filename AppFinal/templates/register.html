@@ -1,0 +1,28 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5"> REGISTRAR NUEVO USUARIO </h1>
+{% endblock %}
+
+{% block contenido1 %}
+<h1>Registrarme: </h1>
+
+<form action="{% url 'register' %}" method="POST"> {% csrf_token %}
+
+    
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+
+<input type="submit" value="Crear Usuario">
+
+
+</form>
+
+{{mensaje}}
+
+{% endblock %}

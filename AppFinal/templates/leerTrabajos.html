@@ -13,13 +13,22 @@
     {% for trabajo in trabajos %}
 
     <li> 
-        {{trabajo.titulo}} {{trabajo.descripcion}} {{trabajo.archivo}} 
+        {{trabajo.titulo}} - {{trabajo.descripcion}} - {{trabajo.archivo}} - 
     
         <a href="{% url 'descargar_archivo' trabajo.archivo %}">Descargar archivo</a>
+        
+        <br>
+
+        <a style="height: 30px; padding: 0 10px; font-size: 12px;" class="btn btn-danger" href = "{% url 'eliminarTrabajo' trabajo.id %}"> Eliminar </a>
+        <a style="height: 30px; padding: 0 10px; font-size: 12px;" class="btn btn-success" href = "{% url 'editarTrabajo' trabajo.id %}"> Editar </a>
 
     </li>
 
     {% endfor %}
+
+</ul>
+
+<h3> {{ mensaje }} </h3>
 
     
 

@@ -126,11 +126,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Agregado con el de clase:
 
-#LOGIN_URL='/AppFinal/login/'
+LOGIN_URL='/AppFinal/login/'
 
-#LOGOUT_REDIRECT_URL='/AppFinal/login/'
+LOGOUT_REDIRECT_URL='/AppFinal/login/'
 
 #MEDIA_URL = '/media/'
 #MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_FILE_STORAGE = 'AppFinal.storage.MiAlmacenamiento' #agregado para el almacenamiento
+
