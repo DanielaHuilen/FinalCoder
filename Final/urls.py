@@ -16,16 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-#from AppFinal.views import *
+from AppFinal.views import vistaInicio
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("AppFinal/", include ("AppFinal.urls")),
-    #path('inicio/', inicio),
-    #path('profesores/',Profesores_index),
-    #path('materias', Materia_index),
+    path("", vistaInicio, name="inicio"),
+
     
 ]
 
-#urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

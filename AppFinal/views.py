@@ -18,6 +18,13 @@ from django.contrib.auth.decorators import login_required #para vistas basadas e
 # Create your views here.
 
 def inicio (request):
+    lista=Avatar.objects.filter(user=request.user)
+    if len(lista)!=0:
+        imagen=lista[0].imagen.url
+    else:
+        imagen="/media/Avatares/Avatarpordefecto.png"
+    return render (request, "inicio.html", {"imagen":imagen})
+    
     return render (request,"inicio.html")
 
 def Profesores_index(request):
@@ -291,3 +298,39 @@ def register (request):
     else:
         form= RegistroUsuarioForm()
     return render (request,"register.html",{"form":form})
+
+@login_required
+def editarUsuario(request):
+    usuario= request.user
+    if request.method=="POST":
+        form=UserEditForm (request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            usuario.email=info["email"]
+            usuario.first_name=info["first_name"]
+            usuario.last_name=info["last_name"]
+            usuario.password1=info["password1"]
+            usuario.password2=info["password2"]
+            usuario.save()
+            return render (request, "inicio.html",{"mensaje":"Perfil editado correctamente",})
+        else:
+            return render (request, "editarUsuario.html",{"mensaje":"Error al editar el usuario",})
+            
+    else:
+        form=UserEditForm(instance=usuario)
+        return render (request, "editarUsuario.html",{"form":form,})
+
+
+
+
+
+
+
+
+#------------REVISAR PARA QUE INICIE DIRECTAMENTE, SIN PONER APPFINAL
+def vistaInicio(request):
+  return render(request, 'inicio.html')
+
+
+    
+    

@@ -1,0 +1,28 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5"> EDITAR USUARIO </h1>
+{% endblock %}
+
+{% block contenido1 %}
+<h1>Editar: </h1>
+
+<form action="{% url 'editarUsuario' %}" method="POST"> {% csrf_token %}
+
+    
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+
+<input type="submit" value="Editar Usuario">
+
+
+</form>
+
+{{mensaje}}
+
+{% endblock %}

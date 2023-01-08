@@ -130,8 +130,12 @@ LOGIN_URL='/AppFinal/login/'
 
 LOGOUT_REDIRECT_URL='/AppFinal/login/'
 
-#MEDIA_URL = '/media/'
-#MEDIA_ROOT = BASE_DIR / 'media'
+
+#Para usar la carpeta media con el Avatar
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_FILE_STORAGE = 'AppFinal.storage.MiAlmacenamiento' #agregado para el almacenamiento
+
+
 
