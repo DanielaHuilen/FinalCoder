@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from .models import *
 from .forms import *
@@ -385,3 +385,18 @@ def chat(request):
 def urlDisponibles(request):
     
     return render (request, "urlDisponibles.html", {"imagen":obtenerAvatar(request)})
+
+
+def en_proceso(request):
+    return render (request, 'en_proceso.html')
+
+
+def errorinterno(request):
+    return render (request, 'errorinterno.html')
+
+def custom_404(request, exception=None):
+    return redirect('en_proceso')
+
+
+def custom_500(request, exception=None):
+    return redirect('errorinterno')

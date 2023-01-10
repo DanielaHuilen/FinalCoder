@@ -22,11 +22,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#!">TAD. Tu Asistente Docente</a>
-                <a class="btn btn-warning " href="{% url 'materia' %}">Materias</a>
+                <a class="navbar-brand" href="{% url 'inicio' %}">TAD. Tu Asistente Docente</a>
                 <a class="btn btn-warning" href="{% url 'profesores' %}">Profesores</a>
                 <a class="btn btn-warning" href="{% url 'trabajos' %}">Trabajos Prácticos</a>
-                <a class="btn btn-warning" href="{% url 'TrabajoPractico_formulario' %}" >Ingresar Trabajo</a>
+                <a class="btn btn-warning " href="{% url 'materia' %}">Materias</a>   
+                <a class="btn btn-warning" href="{% url 'chat' %}" >Chat interno</a>
                 {% if user.is_authenticated %}
                 <p> {{ user.username}} </p>
                 <img src="{{ imagen }}" alt="" style="max-width: 75px;">
@@ -145,7 +145,7 @@
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
-                        <h2 class="mb-4">Ready to get started? Sign up now!</h2>
+                        <h2 class="mb-4">Conocé un poco sobre nosotros</h2>
                         <!-- Signup form-->
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
@@ -157,12 +157,10 @@
                         <form class="form-subscribe" id="contactFormFooter" data-sb-form-api-token="API_TOKEN">
                             <!-- Email address input-->
                             <div class="row">
-                                <div class="col">
-                                    <input class="form-control form-control-lg" id="emailAddressBelow" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                                    <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:required">Email Address is required.</div>
-                                    <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:email">Email Address Email is not valid.</div>
-                                </div>
-                                <div class="col-auto"><button class="btn btn-warning btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                                
+                                <div class="col-auto"><a href="{% url 'sobrenosotros' %}"><button class="btn btn-warning btn-lg disabled" id="submitButton" type="submit">Conocenos</button></a></div>
+                                <div class="col-auto"><a href="{% url 'urlDisponibles' %}"><button class="btn btn-warning btn-lg disabled" id="submitButton" type="submit">Sobre la Página</button></a></div>
+                                
                             </div>
                             <!-- Submit success message-->
                             <!---->

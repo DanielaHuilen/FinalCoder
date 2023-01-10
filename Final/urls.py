@@ -18,6 +18,13 @@ from django.urls import path, include
 from django.conf import settings
 from AppFinal.views import vistaInicio
 from django.conf.urls.static import static
+from django.conf.urls import handler404, handler500
+from AppFinal import views
+
+
+handler404 = "AppFinal.views.custom_404"
+handler500 = "AppFinal.views.custom_500"
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

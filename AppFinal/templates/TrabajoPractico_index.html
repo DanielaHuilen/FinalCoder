@@ -6,12 +6,30 @@
 <h1 class="mb-5">Trabajos Prácticos</h1>
 {% endblock %}
 
-{% block contenido1 %}
-<h1>PRIMARIA </h1>
-<h2> En todas los niveles </h2>
+{% block imagen1%}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/compartir.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
 {% endblock %}
 
-{% block contenido2 %}
-<h1>Secundaria</h1>
-<h2>De todas las modalidades </h2>
+
+{% block contenido1 %}
+    <h1>Encontra lo que buscabas </h1>
+    <h2>Encontra diferentes trabajos practicos para ayudarte en tu día a día: </h2>
+    <h3>Busca por titulo:</h3>
+        <a href="{% url 'buscarTrabajo' %}">
+            <button>Buscar</button>
+        </a>
+
+    <h3>Suma tu aporte:</h3>
+        <a href="{% url 'TrabajoPractico_formulario' %}">
+            <button>Sumate</button>
+        </a>
+
+    <h3>Todos los trabajos de la web: </h3>
+        <a href="{% url 'leerTrabajos' %}">
+            <button>Todos los T.P</button>
+        </a>
+
 {% endblock %}
+

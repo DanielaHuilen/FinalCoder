@@ -30,7 +30,9 @@ urlpatterns = [
     path("sobrenosotros/", sobrenosotros , name="sobrenosotros"),
     path('ws/chat/', consumers.ChatConsumer.as_asgi()),
     path('chat/', chat, name='chat'),
-    path('urlDisponibles/', urlDisponibles, name="urlDisponibles")
+    path('urlDisponibles/', urlDisponibles, name="urlDisponibles"),
+    path('errorinterno/', errorinterno, name="errorinterno"),
+    path('en_proceso', en_proceso, name="en_proceso"),
 
 
     

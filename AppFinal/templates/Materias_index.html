@@ -6,12 +6,41 @@
 <h1 class="mb-5">Materias</h1>
 {% endblock %}
 
+{% block imagen1%}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/materias.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+
+{% endblock %}
+
 {% block contenido1 %}
 <h1>Cs. Naturales </h1>
-<h2>Acá algo de la materia </h2>
+<h2>La mejor ciencia no se aprende en los libros, el sabio más grande y mejor maestro es la Naturaleza. G. Galilei </h2>
 {% endblock %}
+
+{%block imagen2%}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/materias.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+{%endblock%}
 
 {% block contenido2 %}
 <h1>Matemática</h1>
-<h2>Son fundamentales para el desarrollo intelectual de niños y adolescentes </h2>
+<h2>Las matemáticas parecen dotar a uno de un nuevo sentido. C. Darwin </h2>
 {% endblock %}
+
+{% block imagen3%}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/materias.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+
+{% endblock%}
+
+{% block contenido3%}
+
+    <h3>Seleccioná tu materia: </h3>
+        <a href="{% url 'Materias_formulario' %}">
+            <button>Materia</button>
+        </a>
+
+{%endblock%}
