@@ -1,0 +1,42 @@
+{% extends "padre.html" %} <!--cambiar inicio por padre-->
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">UN POCO SOBRE NOSOTROS</h1>
+{% endblock %}
+
+{% block contenido1 %}
+
+  <h1>Fabiana Videla </h1>
+  <h2> Blab blalbala </h2>
+{% endblock %}
+
+{% block imagen1 %}
+
+ <div style="background-image: url('{% static '/AppFinal/assets/img/testimonials-3.jpg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+
+{% endblock %}
+
+{% block contenido2 %}
+<h1>Federico Gamarra</h1>
+<h2>Soy Federico Gamarra, tengo 28 años y me dedico a las ventas. Estoy entrando en el mundo de la programación y ,para ello, elegí los cursos de coderhouse, asi podré desarrollarme en este ámbito, tomando como punto de partida el curso de Phyton. </h2>
+{% endblock %}
+
+{% block imagen2 %}
+
+ <div style="background-image: url('{% static '/AppFinal/assets/img/ImagenFederico.png.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+
+{% endblock %}
+
+
+{% block contenido3 %}
+<h1>Daniela Videla</h1>
+<h2>Mi nombre es Daniela y tengo 33 años. Soy profesora de matemática, me encanta enseñar y resolver problemas. Estuve mucho tiempo con la idea de empezar a estudiar programación, y decidí empezar por Python gracias a diferentes recomendaciones. </h2>
+{% endblock %}
+
+{% block imagen3 %}
+
+ <div style="background-image: url('{% static '/AppFinal/assets/img/ImagenDaniela.png.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+
+{% endblock %}

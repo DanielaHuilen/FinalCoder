@@ -6,8 +6,18 @@
 <h1 class="mb-5">MATERIA FORMULARIO</h1>
 {% endblock %}
 
+{% block imagen1%}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/materias.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+{% endblock %}
+
+
+
 {% block contenido1 %}
 <h1>FORMULARIO</h1>
+
+<h2>Selecciona tu materia</h2>
 
 <form action="{% url 'Materias_formulario' %}" method="POST"> {% csrf_token %}
 

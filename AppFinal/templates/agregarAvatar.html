@@ -1,0 +1,34 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5"> AGREGANDO AVATAR DE: {{ usuario.username }} </h1>
+{% endblock %}
+
+{% block imagen1%}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/login.jpeg' %}'); width: 400px; height: 400px;; margin: 0 auto;"></div>
+{% endblock %}
+
+{% block contenido1 %}
+<h1>Editar: </h1>
+
+<form action="{% url 'agregarAvatar' %}" method="POST" encetype="multipart/form-data"> {% csrf_token %}
+
+    
+    <table>
+
+        {{ formulario.as_table }}
+
+    </table>
+
+<input type="submit" value="Agregar Avatar">
+
+
+</form>
+
+{{mensaje}}
+
+{% endblock %}

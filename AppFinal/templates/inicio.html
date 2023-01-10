@@ -6,15 +6,70 @@
 <h1 class="mb-5">TU ASISTENTE DOCENTE</h1>
 {% endblock %}
 
-{% block contenido1 %}
-<h3> {{ mensaje }} </h3>
+{% block imagen1%}
 <br>
-<img scr="{{ imagen }}" alt="">
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/trabajos.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+{% endblock %}
+
+{% block contenido1 %}
+
+<h3> {{ mensaje }} </h3>
+
+
+<br>
+
 <h1>Trabajos de todas las materias </h1>
-<h2> Blab blalbala </h2>
+<h2> Encontra trabajos prácticos de los temas que estás buscando </h2>
+
+<a href="{% url 'busquedaTrabajo' %}">
+    <button>Busca del tema que necesites</button>
+  </a>
+  
+
+{% endblock %}
+
+
+{% block imagen2%}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/profesores.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
 {% endblock %}
 
 {% block contenido2 %}
-<h1>Comunidad de profes</h1>
-<h2>blabla </h2>
+
+
+<br>
+
+<h1>Somos una comunidad de Profes </h1>
+<h2> Encontrate con colegas de todas partes del país </h2>
+
+<a href="{% url 'busquedaPorfesor' %}">
+    <button>Encontrate</button>
+  </a>
+  
+
 {% endblock %}
+
+
+{% block imagen3 %}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/compartir.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+{% endblock %}
+
+{% block contenido3 %}
+
+
+<br>
+
+<h1>Fomenta el trabajo colaborativo</h1>
+<h2> Subí trabajos especificando materia y tema para ayudar a otros profes</h2>
+
+<a href="{% url 'TrabajoPractico_formulario' %}">
+    <button>Subir</button>
+  </a>
+  
+
+{% endblock %}
+

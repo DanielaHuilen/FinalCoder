@@ -3,24 +3,30 @@
 {% load static %}
 
 {% block titulo %}
-<h1 class="mb-5">Ingresar Trabajo Práctico</h1>
+    <h1 class="mb-5">Ingresar Trabajo Práctico</h1>
+
+{% endblock %}
+
+{% block imagen1 %}
+<br>
+<br>
+<br>
+
+<div style="background-image: url('{% static '/AppFinal/assets/img/trabajos.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+
 {% endblock %}
 
 {% block contenido1 %}
-<h1>Ingreso</h1>
+    <h1>Ingreso</h1>
 
-<form action="{% url 'TrabajoPractico_formulario' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    <form action="{% url 'TrabajoPractico_formulario' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <table>
 
+            {{ form.as_table }}
 
-    
+        </table>
 
-<table>
-
-    {{ form.as_table }}
-
-</table>
-
-<input type="submit" value="Subir Trabajo">
+    <input type="submit" value="Subir Trabajo">
 
 
 </form>

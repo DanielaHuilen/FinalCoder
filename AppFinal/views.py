@@ -16,16 +16,21 @@ from django.contrib.auth.decorators import login_required #para vistas basadas e
 
 
 # Create your views here.
-
-def inicio (request):
+def obtenerAvatar(request):
     lista=Avatar.objects.filter(user=request.user)
     if len(lista)!=0:
         imagen=lista[0].imagen.url
     else:
-        imagen="/media/Avatares/Avatarpordefecto.png"
-    return render (request, "inicio.html", {"imagen":imagen})
+        imagen="/media/avatares/Avatarpordefecto.png"
+    return imagen
+
+
+
+def inicio (request):
+    lista=Avatar.objects.filter(user=request.user)
     
-    return render (request,"inicio.html")
+    return render (request, "inicio.html", {"imagen":obtenerAvatar(request)})
+    
 
 def Profesores_index(request):
     return render (request, "Profesores_index.html")
@@ -35,6 +40,8 @@ def Materia_index(request):
 
 def TrabajoPractico_index(request):
     return render (request, "TrabajoPractico_index.html")
+
+
 
 @login_required
 def Materias_formulario(request):
@@ -48,9 +55,9 @@ def Materias_formulario(request):
             
             materia1=Materia(nombre=nombre)
             materia1.save()
-            return render (request, "inicio.html")
+            return render (request, "inicio.html", {"mensaje":"Materia seleccionada correctamente"})
         else:
-            return render (request, "Materias_formulario.html",{"form":formulario})
+            return render (request, "Materias_formulario.html",{"form":formulario,"imagen":obtenerAvatar(request),})
     else:
         formulario=MateriaForm()
     
@@ -81,14 +88,14 @@ def TrabajoPractico_formulario(request):
             ruta= f'archivos/ {titulo1}.pdf '
             
             default_storage.save(ruta, archivo)
-            return render (request, "inicio.html")
+            return render (request, "inicio.html",{"mensaje":"Trabajo Práctico guardado correctamente"})
         
         #else: 
             #return render (request, "TrabajoPractico_formulario.html",{"form":formulario})
     else:
         formulario=TrabajoForm()
 
-    return render (request, "TrabajoPractico_formulario.html", {"form":formulario})
+    return render (request, "TrabajoPractico_formulario.html", {"form":formulario, "imagen":obtenerAvatar(request)} )
 
 @login_required
 def Profesores_formulario(request, initial= None):
@@ -110,14 +117,14 @@ def Profesores_formulario(request, initial= None):
             
             profesor1=Profesores(nombre=nombre1, apellido=apellido1, antiguedad=antiguedad1, email=email1, materia=materia1)
             profesor1.save()
-            return render (request, "inicio.html")
+            return render (request, "inicio.html", {"mensaje":"Profesor creado correctamente"})
         else:
             return render (request, "Profesores_formulario.html",{"form":formulario})
     else:
         formulario=ProfesorForm(initial=initial)
     
     
-    return render (request, "Profesores_formulario.html",{"form":formulario})
+    return render (request, "Profesores_formulario.html",{"form":formulario,"imagen":obtenerAvatar(request) })
 
 
 
@@ -148,7 +155,7 @@ def buscar(request):
         profesor=Profesores.objects.filter(nombre__icontains=nombre)
         return render(request, "resultadosbusqueda.html", {"profesor":profesor})
     else:
-        return render (request, "busquedaProfesor.html", {"mensaje":"Ingresa el nombre de un Profesor"})
+        return render (request, "busquedaProfesor.html", {"mensaje":"Ingresa el nombre de un Profesor", "imagen":obtenerAvatar(request)})
      
 
 
@@ -163,20 +170,20 @@ def buscarTrabajo(request):
         
         titulo= request.GET["titulo"]
         trabajo=TrabajoPractico.objects.filter(titulo__icontains=titulo)
-        return render(request, "resultadosbusquedaTrabajo.html", {"trabajo":trabajo})
+        return render(request, "resultadosbusquedaTrabajo.html", {"trabajo":trabajo, "imagen":obtenerAvatar(request)})
     else:
-        return render (request, "busquedaTrabajo.html", {"mensaje":"Ingresa una temática que coincida"})
+        return render (request, "busquedaTrabajo.html", {"mensaje":"Ingresa una temática que coincida", "imagen":obtenerAvatar(request)})
      
 #Vistas
 @login_required
 def leerProfesores(request):
     profesores=Profesores.objects.all()
-    return render (request, "leerProfesores.html", {"profesores":profesores})
+    return render (request, "leerProfesores.html", {"profesores":profesores , "imagen":obtenerAvatar(request)})
 
 @login_required
 def leerTrabajos(request):
     trabajos=TrabajoPractico.objects.all()
-    return render (request, "leerTrabajos.html", {"trabajos":trabajos})
+    return render (request, "leerTrabajos.html", {"trabajos":trabajos, "imagen":obtenerAvatar(request)})
 
 
 #Para ver si se puede descargar:
@@ -184,11 +191,11 @@ def leerTrabajos(request):
 
 @login_required
 def descargar_archivo(request, nombre_archivo):
-    # Abre el archivo en modo lectura binaria
-    with open(f'archivos/{nombre_archivo}', 'rb') as archivo:
-        # Crea una respuesta del servidor con el archivo
+    
+    with open(f'media/{nombre_archivo}', 'rb') as archivo:
+        
         response = HttpResponse(archivo.read(), content_type='application/pdf')
-        # Agrega un encabezado 'Content-Disposition' para indicar que se está descargando un archivo
+      
         response['Content-Disposition'] = f'attachment; filename="{nombre_archivo}"'
         return response
 
@@ -199,7 +206,7 @@ def eliminarProfesor(request, id):
     profesor= Profesores.objects.get(id= id)
     profesor.delete()
     profesores= Profesores.objects.all()
-    return render (request, "leerProfesores.html", {"mensaje":"Profesor eliminado correctamente", "profesores": profesores})
+    return render (request, "leerProfesores.html", {"mensaje":"Profesor eliminado correctamente", "profesores": profesores, "imagen":obtenerAvatar(request)})
 
 
 @login_required
@@ -207,7 +214,7 @@ def eliminarTrabajo(request, id):
     trabajo= TrabajoPractico.objects.get(id= id)
     trabajo.delete()
     trabajos= TrabajoPractico.objects.all()
-    return render (request, "leerTrabajos.html", {"mensaje":"Trabajo Eliminado", "trabajos": trabajos})
+    return render (request, "leerTrabajos.html", {"mensaje":"Trabajo Eliminado", "trabajos": trabajos, "imagen":obtenerAvatar(request)})
 
 #Editar
 
@@ -226,12 +233,12 @@ def editarProfesor (request, id):
             profesor.materia=informacion["materia"]
             profesor.save()
             profesores=Profesores.objects.all()
-            return render (request, "leerProfesores.html", {"mensaje":"Profesor editado correctamente", "profesores": profesores})
+            return render (request, "leerProfesores.html", {"mensaje":"Profesor editado correctamente", "profesores": profesores, "imagen":obtenerAvatar(request)})
     else:
-        formulario= ProfesorForm(initial={"nombre":profesor.nombre, "apellido":profesor.apellido, "antiguedad":profesor.antiguedad,"email":profesor.email,"materia":profesor.materia})
+        formulario= ProfesorForm(initial={"nombre":profesor.nombre, "apellido":profesor.apellido, "antiguedad":profesor.antiguedad,"email":profesor.email,"materia":profesor.materia, "imagen":obtenerAvatar(request)})
     
    
-    return render (request, "editarProfesor.html", {"form":formulario, "profesor":profesor})
+    return render (request, "editarProfesor.html", {"form":formulario, "profesor":profesor, "imagen":obtenerAvatar(request)})
     
     
 @login_required
@@ -253,7 +260,7 @@ def editarTrabajo (request, id):    #revisar
             return render (request, "leerTrabajos.html", {"mensaje":"Trabajo editado correctamente", "trabajos": trabajos})
     else:
         formulario= TrabajoForm(initial={"titulo":trabajo.titulo, "descripcion":trabajo.descripcion, "archivo":trabajo.archivo,"profesor":trabajo.profesor,"materia":trabajo.materia})
-    return render (request, "editarTrabajo.html", {"form":formulario, "trabajo":trabajo})
+    return render (request, "editarTrabajo.html", {"form":formulario, "trabajo":trabajo, "imagen":obtenerAvatar(request)})
     
     
 #Login
@@ -268,7 +275,7 @@ def login_request(request):
             usuario=authenticate(username=usu, password=clave)
             if usuario is not None:
                 login (request, usuario)
-                return render (request, "inicio.html", {"mensaje": f"Bienvenid@ Profe {usuario}" })
+                return render (request, "inicio.html", {"mensaje": f"Bienvenid@ Profe {usuario}", "imagen":obtenerAvatar(request) })
             else:
                 return render (request, "login.html", {"mensaje":"usuario o contraseña incorrectos", 'form':form})
         
@@ -312,9 +319,9 @@ def editarUsuario(request):
             usuario.password1=info["password1"]
             usuario.password2=info["password2"]
             usuario.save()
-            return render (request, "inicio.html",{"mensaje":"Perfil editado correctamente",})
+            return render (request, "inicio.html",{"mensaje":"Perfil editado correctamente", "imagen":obtenerAvatar(request)})
         else:
-            return render (request, "editarUsuario.html",{"mensaje":"Error al editar el usuario",})
+            return render (request, "editarUsuario.html",{"mensaje":"Error al editar el usuario", "imagen":obtenerAvatar(request)})
             
     else:
         form=UserEditForm(instance=usuario)
@@ -332,5 +339,49 @@ def vistaInicio(request):
   return render(request, 'inicio.html')
 
 
+@login_required
+def agregarAvatar(request):
+    if request.method=="POST":
+        form=AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            avatarViejo=Avatar.objects.filter(user=request.user)
+            if len(avatarViejo)!=0:
+                avatarViejo[0].delete()
+            avatar=Avatar(user=request.user, imagen=request.FILES["imagen"])
+            avatar.save()
+            return render (request, "inicio.html", {"mensaje":"Avatar creado correctamente"})
+        else:
+            return render(request, "agregarAvatar.html", {"formulario":form, "usuario": request.user, "imagen":obtenerAvatar(request)})    
+    else:
+        form=AvatarForm()
+        return render(request, "agregarAvatar.html", {'formulario':form, "usuario":request.user, "imagen":obtenerAvatar(request)})
+
+
+   
+def sobrenosotros(request):
     
+    return render (request, "sobrenosotros.html", {"imagen":obtenerAvatar(request)})
+
+
+#@login_required
+#def chat(request):
+#    users = User.objects.all()
+#    return render(request, 'chat.html', {'users': users})
+
+#@login_required
+#def chat(request):
+#    user_messages = Message.objects.filter(recipient=request.user)
+#    users = User.objects.all()
+#    return render(request, 'chat.html', {'users': users, 'user_messages': user_messages})
+
+
+@login_required
+def chat(request):
+    user_messages = Message.objects.filter(recipient=request.user)
+    messages = [{'sender': message.sender.username, 'content': message.content} for message in user_messages]
+    users = User.objects.all()
+    return render(request, 'chat.html', {'users': users, 'messages': messages})
+
+def urlDisponibles(request):
     
+    return render (request, "urlDisponibles.html", {"imagen":obtenerAvatar(request)})

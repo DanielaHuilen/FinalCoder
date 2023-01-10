@@ -2,11 +2,20 @@
 
 {% load static %}
 
+
 {% block titulo %}
 <h1 class="mb-5">Formulario de Busqueda de Profesores</h1>
 {% endblock %}
 
+{% block imagen1%}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/profesores.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+{% endblock %}
+
 {% block contenido1 %}
+
+<h1> Ingresa el nombre del Profesor que buscas </h1>
 
 <form action="{% url 'buscar' %}" method='GET'>
 
@@ -20,7 +29,3 @@
 
 {% endblock %}
 
-{% block contenido2 %}
-<h1>Secundaria</h1>
-<h2>De todas las modalidades </h2>
-{% endblock %}

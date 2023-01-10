@@ -1,6 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 from AppFinal.views import *
+from . import consumers
 
 urlpatterns = [
     path('', inicio, name="inicio"),
@@ -24,8 +25,12 @@ urlpatterns = [
     path("login/", login_request, name="login"),
     path("register/",register, name='register'),
     path("logout/",LogoutView.as_view(), name="logout"),
-    path("editarUsuario/", editarUsuario, name="editarUsuario")
-
+    path("editarUsuario/", editarUsuario, name="editarUsuario"),
+    path("agregarAvatar/", agregarAvatar, name="agregarAvatar"),
+    path("sobrenosotros/", sobrenosotros , name="sobrenosotros"),
+    path('ws/chat/', consumers.ChatConsumer.as_asgi()),
+    path('chat/', chat, name='chat'),
+    path('urlDisponibles/', urlDisponibles, name="urlDisponibles")
 
 
     

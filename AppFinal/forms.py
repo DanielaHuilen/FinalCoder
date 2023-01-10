@@ -7,12 +7,13 @@ from django.contrib.auth.models import User
     
 class MateriaForm (forms.Form):
     materia = [
-        ('Matemáticas', 'Matemáticas'),
+        ('Matemática', 'Matemática'),
         ('Física', 'Física'),
         ('Química', 'Química'),
         ('Biología', 'Biología'),
         ('Historia', 'Historia'),
         ('Geografía', 'Geografía'),
+        ('Otra', 'Otra'),
     ]
     nombre = forms.ChoiceField(choices=materia)
 

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'AppFinal',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -50,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Final.urls' #FINAL_CODER
+ROOT_URLCONF = 'Final.urls' 
 
 TEMPLATES = [
     {
@@ -124,7 +125,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-#Agregado con el de clase:
+#para el login:
 
 LOGIN_URL='/AppFinal/login/'
 
@@ -135,7 +136,11 @@ LOGOUT_REDIRECT_URL='/AppFinal/login/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-DEFAULT_FILE_STORAGE = 'AppFinal.storage.MiAlmacenamiento' #agregado para el almacenamiento
+#DEFAULT_FILE_STORAGE = 'AppFinal.storage.MiAlmacenamiento' #agregado para el almacenamiento
 
-
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 

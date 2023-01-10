@@ -6,7 +6,17 @@
 <h1 class="mb-5">Formulario de Busqueda de Trabajos Prácticos</h1>
 {% endblock %}
 
+{% block imagen1 %}
+<br>
+<br>
+<div style="background-image: url('{% static '/AppFinal/assets/img/compartir.jpeg' %}'); width: 300px; height: 300px;; margin: 0 auto;"></div>
+{% endblock %}
+
+
+
 {% block contenido1 %}
+
+<h1> Ingresa una palabra que identifique el T.P. que buscas </h1>
 
 <form action="{% url 'buscarTrabajo' %}" method='GET'>
 
@@ -20,7 +30,3 @@
 
 {% endblock %}
 
-{% block contenido2 %}
-<h1>Secundaria</h1>
-<h2>De todas las modalidades </h2>
-{% endblock %}

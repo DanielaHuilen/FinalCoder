@@ -29,6 +29,7 @@
                 <a class="btn btn-warning" href="{% url 'TrabajoPractico_formulario' %}" >Ingresar Trabajo</a>
                 {% if user.is_authenticated %}
                 <p> {{ user.username}} </p>
+                <img src="{{ imagen }}" alt="" style="max-width: 75px;">
                 <a class="btn btn-danger " style="color: white; ; font-weight: bold;" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                 <a class="btn btn-warning " style="background-color: #FFA500; color: white; ; font-weight: bold;" href="{% url 'login' %}">Login</a>
@@ -57,7 +58,15 @@
         <section class="showcase">
             <div class="container-fluid p-0">
                 <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" 
+
+                        {% block imagen1 %}
+
+                        {% endblock %}
+                        
+                    </div>
+                    
+                    
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
 
                         {% block contenido1 %}
@@ -68,7 +77,13 @@
                     </div>
                 </div>
                 <div class="row g-0">
-                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
+                    <div class="col-lg-6 text-white showcase-img" 
+
+                     {% block imagen2 %}
+
+                     {% endblock %}
+                    </div>
+                    
                     <div class="col-lg-6 my-auto showcase-text">
 
                         {% block contenido2 %}
@@ -78,7 +93,13 @@
                     </div>
                 </div>
                 <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-3.jpg')"></div>
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" 
+
+                        {% block imagen3 %}
+
+                        {% endblock %}
+                    </div>
+
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
 
                         {% block contenido3 %}
@@ -93,27 +114,27 @@
         <!-- Testimonials-->
         <section class="testimonials text-center bg-light">
             <div class="container">
-                <h2 class="mb-5">Un poco de nosotros...</h2>
+                <h2 class="mb-5">Porque sabemos que ser profe no siempre es facil</h2>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src= "{% static "AppFinal/assets/img/testimonials-1.jpg" %}" alt="..." />
-                            <h5>Daniela</h5>
-                            <p class="font-weight-light mb-0">"Profe de matemática"</p>
+                            <img class="img-fluid rounded-circle mb-3" src= "{% static "AppFinal/assets/img/profe2.jpeg" %}" alt="..." />
+                            <h5>Enfrentando la realidad</h5>
+                            <p class="font-weight-light mb-0">"Recuerden niños: mientras peor salga el exámen, más fondos nos dan, así que no se esfuercen mucho"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="{% static "AppFinal/assets/img/testimonials-2.jpg" %}" alt="..." />
-                            <h5>Federico</h5>
-                            <p class="font-weight-light mb-0">"Radiologo"</p>
+                            <img class="img-fluid rounded-circle mb-3" src="{% static "AppFinal/assets/img/profe1.jpeg" %}" alt="..." />
+                            <h5>Alentando</h5>
+                            <p class="font-weight-light mb-0">"Solo porque alguien tropieza o el pierde el camino, no implica que se pierda para siempre"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src= "{% static "AppFinal/assets/img/testimonials-3.jpg" %}" alt="..." />
-                            <h5>Fabiana</h5>
-                            <p class="font-weight-light mb-0">"Profe de matemática"</p>
+                            <img class="img-fluid rounded-circle mb-3" src= "{% static "AppFinal/assets/img/profe3.jpeg" %}" alt="..." />
+                            <h5>Inspirando</h5>
+                            <p class="font-weight-light mb-0">"Imposible nada es. Difícil muchas cosas son"</p>
                         </div>
                     </div>
                 </div>
